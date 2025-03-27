@@ -1,0 +1,175 @@
+---
+title: "Data formats"
+author: ""
+format:
+  html:
+    embed-resources: true
+editor: visual
+execute:
+  warning: false
+editor_options: 
+  chunk_output_type: console
+---
+
+# Part 1: Data preparation
+
+## Task 1: Load packages
+
+The required packages for this homework exercise have already been added.
+
+1.  Run the code chunk below to load the required packages. Tipp: Click on the green play button in the top right corner of the code chunk.
+2.  What's the `tidyverse` Package? Describe in maximum two sentences below.
+
+```{r}
+library(tidyverse)
+```
+
+## Task 2: Import data
+
+1.  Use the `read_csv()` (**Note**: Watch out for the `_` and don't use the `.` as in `read.csv()`) function to import the "msw-generation-and-composition-by-income.csv" data from the `data` directory and assign it to an object with the name `waste_data`.
+
+```{r}
+
+```
+
+## Task 3: Vector coercion
+
+1.  Use `waste_data` and `count()` to create a frequency table for the `income_cat` variable.
+
+2.  Use then `c()` function to create a vector with a sensible order for the the values in `income_cat`. Use the assignment operator `<-` to assign the vector to an object with the name `levels_income_cat`.
+
+3.  Starting with the `waste_data` object, use the pipe operator and the `mutate()` function to convert the `income_cat` variable from a variable of type character to a variable of type factor. Use the levels you defined in the previous step.ories using the following code to identify the correct spelling of the categories in the variable `income_cat`.
+
+4.  Assign the created data frame to an object with the name `waste_data_fct`.
+
+5.  Render and fix any errors
+
+```{r}
+
+```
+
+## Task 4: From wide to long
+
+1.  Starting with the `waste_data_fct` object, use the `pivot_longer()` function to convert the data frame from a wide to a long format. Apply the following:
+
+-   bring all columns from `food_organic_waste` to `yard_garden_green_waste` into a long format
+-   send the variable names to a column named "waste_category"
+-   send the values of the variables to a column named "percent"
+
+2.  Remove all `NA`s from the `percent` variable
+
+3.  Assign the created data frame to an object with the name `waste_data_long`
+
+4.  Render and fix any errors
+
+```{r}
+
+```
+
+# Part 2: Data summary
+
+## Task 1: Import data
+
+I have stored the data that I would have expected at the end of the previous task and import it here.
+
+1.  Run the code in the code chunk below.
+
+```{r}
+waste_data_long <- read_rds("data/msw-generation-and-composition-by-income-long.rds")
+```
+
+## Task 2: Summarise data
+
+1.  Starting with `waste_data_long`, group the data by`income_cat` and `waste_category`, then create a summary table containing the mean of percentages (call this mean_percent) for each group.
+
+2.  Assign the created data frame to an object with the name `waste_data_long_mean`.
+
+```{r}
+
+```
+
+## Task 3: Table display
+
+1.  Starting with the `waste_data_long_mean` object, execute the code and observe the output in the Console. Would you publish this table in this format in a report?
+
+```{r}
+
+```
+
+## Task 4: From long to wide
+
+1.  Starting with the `waste_data_long_mean` object, use the pipe operator to add another line of code which uses the `pivot_wider()` function to bring the data from a long format into a wide format using names for variables from `waste_category` and corresponding values from `mean_percent`
+
+2.  Execute the code and observe the output in the Console. Would you publish this table in a report in this format?
+
+3.  Render and fix any errors
+
+```{r}
+
+```
+
+# Part 3: Data visualization
+
+## Task 1: Import data
+
+I have stored the data that I would have expected at the end of the previous task and import it here.
+
+1.  Run the code in the code chunk below.
+
+```{r}
+waste_data_long_mean <- read_rds("data/msw-generation-and-composition-by-income-long-mean.rds")
+```
+
+## Task 2: Reproduce a plot
+
+1.  Render and fix any errors.
+
+2.  Reproduce the plot that you see as an image below when you render the report and view the output in your Viewer tab in the bottom right window.
+
+**Hint:** To get those bars displayed next to each other, use the `geom_col()` function and apply the `position = position_dodge()` argument and value. The colors don't have to be exactly the same colors, just not the default color scale.
+
+**Note:** The size of the plot will be different. That is alright and does not need to match.
+
+```{r}
+
+
+```
+
+![](figs/fig-01-mean-waste-composition-by-income.png)
+
+# Part 4: Complete the assignment
+
+## Task 1: Data communication
+
+**In the YAML header (between the three dashes at the top of the document)**
+
+1.  Add your name as the author of this document
+2.  Render the document and fix any errors
+
+## Task 2: Stage, Commit & Push to GitHub
+
+1.  Open the Git pane in RStudio. It's in the top right corner in a separate tab.
+
+2.  **Stage** your changes by checking appropriate box next to all files (if you select one file with your mouse, you can then highlight them all with Ctrl + A on your keyboard and check all boxes)
+
+3.  Write a meaningful commit message (e.g. "Completed homework assignment 06") in the **Commit message** box
+
+4.  Click **Commit**. Note that every commit needs to have a commit message associated with it.
+
+### Open an issue on GitHub
+
+Once you have ensured that the Quarto document renders without errors and you have pushed all your changes to GitHub, you can complete the assignment by opening an issue on
+
+1.  Open [github.com](https://github.com/) in your browser.
+
+2.  Navigate to the GitHub organisation for the course.
+
+3.  Find the repository md-06-assignments that ends with your GitHub username.
+
+4.  Click on the "Issues" tab.
+
+5.  Click on the green "New issue" button.
+
+6.  In the "Title" field write: "Completed module 6 assignments".
+
+7.  In the "Leave a comment" field, tag the course instructors @larnsce and ask some questions, if you like.
